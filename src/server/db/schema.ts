@@ -16,25 +16,6 @@ import { type AdapterAccount } from "next-auth/adapters";
  */
 export const createTable = sqliteTableCreator((name) => `portfolio_${name}`);
 
-export const posts = createTable(
-  "post",
-  {
-    id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-    name: text("name", { length: 256 }),
-    createdById: text("createdById", { length: 255 })
-      .notNull()
-      .references(() => users.id),
-    createdAt: int("created_at", { mode: "timestamp" })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: int("updatedAt", { mode: "timestamp" }),
-  },
-  (example) => ({
-    createdByIdIdx: index("createdById_idx").on(example.createdById),
-    nameIndex: index("name_idx").on(example.name),
-  })
-);
-
 export const users = createTable("user", {
   id: text("id", { length: 255 }).notNull().primaryKey(),
   name: text("name", { length: 255 }),
@@ -73,7 +54,7 @@ export const accounts = createTable(
       columns: [account.provider, account.providerAccountId],
     }),
     userIdIdx: index("account_userId_idx").on(account.userId),
-  })
+  }),
 );
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
@@ -91,7 +72,7 @@ export const sessions = createTable(
   },
   (session) => ({
     userIdIdx: index("session_userId_idx").on(session.userId),
-  })
+  }),
 );
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
@@ -107,5 +88,69 @@ export const verificationTokens = createTable(
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
-  })
+  }),
+);
+
+export const projects = createTable("project", {
+  id: int("id", { mode: "number" })
+    .notNull()
+    .primaryKey({ autoIncrement: true }),
+  isEnabled: int("isEnabled", { mode: "boolean" }).default(false),
+  name: text("name", { length: 255 }),
+  description: text("description", { length: 255 }),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at"),
+  pictureUrl: text("pictureUrl", { length: 255 }),
+});
+
+export const projectsRelations = relations(projects, ({ many }) => ({
+  projectAbilities: many(projectAbilities),
+}));
+
+export const abilities = createTable("abilities", {
+  id: int("id", { mode: "number" })
+    .notNull()
+    .primaryKey({ autoIncrement: true }),
+  name: text("name", { length: 255 }),
+  pictureUrl: text("pictureUrl", { length: 255 }),
+  isEnabled: int("isEnabled", { mode: "boolean" }).default(false),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at"),
+});
+
+export const abilitiesRelations = relations(abilities, ({ many }) => ({
+  projectAbilities: many(projectAbilities),
+}));
+
+export const projectAbilities = createTable(
+  "projects_abilities",
+  {
+    projectId: int("project_id")
+      .notNull()
+      .references(() => projects.id),
+    abilitieId: int("abilitie_id")
+      .notNull()
+      .references(() => abilities.id),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.projectId, t.abilitieId] }),
+  }),
+);
+
+export const projectAbilitiesRelations = relations(
+  projectAbilities,
+  ({ one }) => ({
+    project: one(projects, {
+      fields: [projectAbilities.projectId],
+      references: [projects.id],
+    }),
+    abilities: one(abilities, {
+      fields: [projectAbilities.abilitieId],
+      references: [abilities.id],
+    }),
+  }),
 );
