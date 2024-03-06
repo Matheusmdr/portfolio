@@ -123,9 +123,9 @@ export const projectRouter = createTRPCRouter({
         where: eq(projects.id, input.id),
       });
 
-      await ctx.db.delete(projectAbilities).where(
-        eq(projectAbilities.projectId, input.id),
-      )
+      await ctx.db
+        .delete(projectAbilities)
+        .where(eq(projectAbilities.projectId, input.id));
       if (!result) {
         throw new TRPCError({
           code: "NOT_FOUND",

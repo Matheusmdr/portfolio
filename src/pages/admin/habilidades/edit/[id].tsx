@@ -10,7 +10,7 @@ interface EditProps {
 
 export default function Edit({ id }: EditProps) {
   const { data } = api.abilitie.get.useQuery({ id });
-  console.log(data)
+  console.log(data);
   return (
     <Layout>
       <CreateAndEditAbilitie data={data} />

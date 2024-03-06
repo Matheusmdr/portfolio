@@ -1,4 +1,4 @@
-import { drizzle } from "drizzle-orm/libsql"
+import { drizzle } from "drizzle-orm/libsql";
 import { env } from "@/env.js";
 import * as schema from "./schema";
 import { createClient } from "@libsql/client";

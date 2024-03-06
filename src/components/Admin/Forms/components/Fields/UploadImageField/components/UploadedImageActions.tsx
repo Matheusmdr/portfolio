@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {filesize} from "filesize";
+import { filesize } from "filesize";
 
 interface UploadedImagePreviewProps {
   previewInfo?: {
@@ -9,8 +9,10 @@ interface UploadedImagePreviewProps {
   };
 }
 
-export function UploadedImagePreview({ previewInfo }: UploadedImagePreviewProps) {
-  const size = filesize(previewInfo?.size ?? 0, {separator: ","});  
+export function UploadedImagePreview({
+  previewInfo,
+}: UploadedImagePreviewProps) {
+  const size = filesize(previewInfo?.size ?? 0, { separator: "," });
 
   return (
     <div className="flex gap-4">
@@ -20,11 +22,13 @@ export function UploadedImagePreview({ previewInfo }: UploadedImagePreviewProps)
           alt="image"
           width={200}
           height={150}
-          className="h-36 w-36 object-cover transition-all duration-500 group-hover:scale-110 rounded-md"
+          className="h-36 w-36 rounded-md object-cover transition-all duration-500 group-hover:scale-110"
         />
       )}
       <div>
-        {previewInfo?.name.trim() && <p className="font-bold text-base">{previewInfo?.name}</p>}
+        {previewInfo?.name.trim() && (
+          <p className="text-base font-bold">{previewInfo?.name}</p>
+        )}
         {size !== "0 B" && <span className="text-sm">{size}</span>}
       </div>
     </div>

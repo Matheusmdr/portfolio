@@ -1,2 +1,2 @@
-export { CreateAndEditAbilitie } from './components/CreateAndEditAbilitie'
-export { CreateAndEditProject } from './components/CreateAndEditProject'
+export { CreateAndEditAbilitie } from "./components/CreateAndEditAbilitie";
+export { CreateAndEditProject } from "./components/CreateAndEditProject";

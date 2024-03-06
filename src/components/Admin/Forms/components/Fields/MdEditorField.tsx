@@ -28,7 +28,7 @@ export function MdEditorField<T extends FieldValues>({
   const [mdTheme, setMdTheme] = useState<Themes>("light");
   const [text, setText] = useState<string>("");
   const htmlValue = form.getValues(name);
-  console.log(htmlValue)
+  console.log(htmlValue);
   const turndownService = useMemo(() => new TurndownService(), []);
 
   const setTheme = useCallback(() => {

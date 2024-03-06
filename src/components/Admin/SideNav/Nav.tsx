@@ -12,7 +12,7 @@ import {
 interface NavProps {
   isCollapsed: boolean;
   links: {
-    url: string
+    url: string;
     title: string;
     label?: string;
     icon: LucideIcon;

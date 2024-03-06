@@ -60,11 +60,7 @@ export const projectColumns: ColumnDef<Project>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="lowercase">
-        {row.getValue("name")}
-      </div>
-    ),
+    cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "createdAt",
@@ -72,7 +68,9 @@ export const projectColumns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-right font-medium">
-          {row.getValue("createdAt") ? format(row.getValue("createdAt"), "dd/MM/yyyy -	kk:mm") : "-"}
+          {row.getValue("createdAt")
+            ? format(row.getValue("createdAt"), "dd/MM/yyyy -	kk:mm")
+            : "-"}
         </div>
       );
     },
@@ -83,7 +81,9 @@ export const projectColumns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-right font-medium">
-          {row.getValue("updatedAt") ? format(row.getValue("updatedAt"), "dd/MM/yyyy -	kk:mm") : "-"}
+          {row.getValue("updatedAt")
+            ? format(row.getValue("updatedAt"), "dd/MM/yyyy -	kk:mm")
+            : "-"}
         </div>
       );
     },

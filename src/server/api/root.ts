@@ -9,7 +9,7 @@ import { abilitieRouter } from "./routers/abilites";
  */
 export const appRouter = createTRPCRouter({
   project: projectRouter,
-  abilitie: abilitieRouter
+  abilitie: abilitieRouter,
 });
 
 // export type definition of API

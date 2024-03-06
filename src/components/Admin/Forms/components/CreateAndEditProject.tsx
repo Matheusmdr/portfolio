@@ -65,9 +65,9 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
   const onSubmit = async (formData: FormData) => {
     if (!!data) {
       try {
-        let downloadUrl = data.pictureUrl  ?? undefined;
+        let downloadUrl = data.pictureUrl ?? undefined;
         let picturePath = data.picturePath ?? undefined;
-        console.log(downloadUrl)
+        console.log(downloadUrl);
         if (formData.pictureFile.file) {
           const response = await uploadFile(formData.pictureFile.file);
           downloadUrl = response?.publicUrl;
@@ -137,7 +137,7 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
             </FormItem>
           )}
         />
-       <FormField
+        <FormField
           control={form.control}
           name="tagsId"
           render={() => (
@@ -167,9 +167,9 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
                                 ? field.onChange([...field.value, item.id])
                                 : field.onChange(
                                     field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
+                                      (value) => value !== item.id,
+                                    ),
+                                  );
                             }}
                           />
                         </FormControl>
@@ -177,7 +177,7 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
                           {item.name}
                         </FormLabel>
                       </FormItem>
-                    )
+                    );
                   }}
                 />
               ))}

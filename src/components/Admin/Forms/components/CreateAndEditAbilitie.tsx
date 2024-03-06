@@ -39,8 +39,6 @@ export function CreateAndEditAbilitie({ data }: CreateAndEditAbilitieProps) {
   const { mutate: update, isLoading: isLoadingEdit } =
     api.abilitie.update.useMutation();
 
-
-
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -84,7 +82,7 @@ export function CreateAndEditAbilitie({ data }: CreateAndEditAbilitieProps) {
       }
     } else {
       try {
-        let downloadUrl =  undefined;
+        let downloadUrl = undefined;
         let picturePath = undefined;
         if (!!formData.pictureFile.file) {
           const response = await uploadFile(formData.pictureFile.file);
