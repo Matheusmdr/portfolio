@@ -48,7 +48,7 @@ export const projectColumns: ColumnDef<Project>[] = [
     ),
   },
   {
-    accessorKey: "Nome",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button

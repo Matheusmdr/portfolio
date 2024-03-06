@@ -40,13 +40,20 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
+    session: ({ session }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
+        // id: user.id,
       },
     }),
+    async signIn({ account, profile }) {
+      if (account?.provider === "google") {
+        return profile?.email === env.GOOGLE_EMAIL;
+      } else {
+        return false;
+      } // Do different verification for other providers that don't have `email_verified`
+    },
   },
   adapter: DrizzleAdapter(db, createTable) as Adapter,
   providers: [
@@ -64,6 +71,12 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 2 * 24 * 60 * 60,
+    updateAge: 30 * 24 * 60 * 60,
+  },
+  secret: env.NEXTAUTH_SECRET,
 };
 
 /**

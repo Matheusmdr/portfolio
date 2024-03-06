@@ -17,12 +17,15 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { api } from "@/utils/api";
+import { toast } from "@/components/ui/use-toast";
 
-export default function Programacoes() {
+export default function Projetos() {
   const router = useRouter();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { id } = router.query as { id: string };
   const { data } = api.project.getAll.useQuery();
+  const { mutate } = api.project.delete.useMutation();
+  const utils = api.useUtils();
 
   const handleCloseDeleteModal = async (value: boolean) => {
     if (!value) {
@@ -33,6 +36,33 @@ export default function Programacoes() {
       );
     }
     setOpenDeleteModal(value);
+  };
+
+  const handleDelete = async () => {
+    try {
+      mutate(
+        {
+          id: Number(id),
+        },
+        {
+          onSuccess: () => {
+            toast({
+              title: "Sucesso",
+              description: "Projeto deletado com sucesso.",
+            });
+          },
+        },
+      );
+      setOpenDeleteModal(false);
+      await utils.project.getAll.invalidate();
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro ao deletar o projeto.",
+        variant: "destructive",
+      });
+    }
   };
 
   useEffect(() => {
@@ -54,9 +84,7 @@ export default function Programacoes() {
           {data && <DataTable data={data} columns={projectColumns} />}
         </div>
       </TooltipProvider>
-      <AlertDialog
-        open={openDeleteModal}
-      >
+      <AlertDialog open={openDeleteModal}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Você tem certeza absoluta?</AlertDialogTitle>
@@ -69,7 +97,7 @@ export default function Programacoes() {
             <AlertDialogCancel onClick={() => handleCloseDeleteModal(false)}>
               Cancelar
             </AlertDialogCancel>
-            <AlertDialogAction>
+            <AlertDialogAction onClick={() => handleDelete()}>
               Continuar
             </AlertDialogAction>
           </AlertDialogFooter>

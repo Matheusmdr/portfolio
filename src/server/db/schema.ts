@@ -103,6 +103,7 @@ export const projects = createTable("project", {
     .notNull(),
   updatedAt: text("updated_at"),
   pictureUrl: text("pictureUrl", { length: 255 }),
+  picturePath: text("picturePath", { length: 255 }),
 });
 
 export const projectsRelations = relations(projects, ({ many }) => ({
@@ -115,6 +116,7 @@ export const abilities = createTable("abilities", {
     .primaryKey({ autoIncrement: true }),
   name: text("name", { length: 255 }),
   pictureUrl: text("pictureUrl", { length: 255 }),
+  picturePath: text("picturePath", { length: 255 }),
   isEnabled: int("isEnabled", { mode: "boolean" }).default(false),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)

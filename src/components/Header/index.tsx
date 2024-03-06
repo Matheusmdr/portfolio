@@ -10,26 +10,47 @@ export function Header() {
         <div></div>
         <ul className="flex items-center gap-4">
           <li>
-            <Link href={"#home"}>Projects</Link>
+            <Link
+              href={"#home"}
+              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
+            >
+              Projects
+            </Link>
           </li>
           <li>
-            <Link href={"#about"}>Resume</Link>
+            <Link
+              href={"#about"}
+              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
+            >
+              Resume
+            </Link>
           </li>
           <li>
-            <Link href={"#work"}>Contact</Link>
+            <Link
+              href={"#work"}
+              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
+            >
+              Contact
+            </Link>
           </li>
           <li>
-            <Button size={"icon"} variant={"ghost"}>
-              <Github className="h-4 w-4" />
+            <Button size={"icon"} variant={"ghost"} className="group">
+              <Github className="h-4 w-4 text-foreground/60 transition-colors hover:text-foreground/80 group-hover:text-foreground/80" />
             </Button>
           </li>
           <li>
             <ThemeToggle />
           </li>
           <li>
-            <Button variant={"outline"} className="gap-2">
+            <Button
+              variant={"outline"}
+              className="group gap-2 text-foreground/60 transition-colors hover:text-foreground/80"
+            >
               Contact Me
-              <ArrowRight size={15} />
+              <ArrowRight
+                size={15}
+                className="text-foreground/60 transition-colors hover:text-foreground/80 group-hover:text-foreground/80"
+              />
             </Button>
           </li>
         </ul>

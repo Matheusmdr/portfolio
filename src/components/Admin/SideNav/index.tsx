@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  CalendarCheck2,
-  Users,
-} from "lucide-react";
+import { CalendarCheck2, Users } from "lucide-react";
 
 import { Nav } from "@/components/Admin/SideNav/Nav";
 import { cn } from "@/lib/utils";
@@ -16,9 +13,13 @@ import {
 } from "@/components/ui/resizable";
 import { useRouter } from "next/router";
 
+const isActive = (url: string, pathname: string) => {
+  return pathname.includes(url) ? "default" : "ghost";
+};
+
 export function SideNav({ children }: React.PropsWithChildren) {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
-  const defaultLayout = [265, 440, 655];
+  const defaultLayout = [25, 75];
   const navCollapsedSize = 4;
   const { pathname } = useRouter();
 
@@ -33,7 +34,7 @@ export function SideNav({ children }: React.PropsWithChildren) {
           collapsedSize={navCollapsedSize}
           collapsible={true}
           minSize={15}
-          maxSize={20}
+          maxSize={25}
           className={cn(
             isCollapsed &&
               "min-w-[50px] transition-all duration-300 ease-in-out",
@@ -53,15 +54,14 @@ export function SideNav({ children }: React.PropsWithChildren) {
                 title: "Projetos",
                 label: "",
                 icon: CalendarCheck2,
-                variant: pathname === "/admin/projetos" ? "default" : "ghost",
+                variant: isActive("projetos", pathname),
                 url: "/admin/projetos",
               },
               {
                 title: "Habilidades",
                 label: "",
                 icon: Users,
-                variant:
-                  pathname === "/admin/habilidades" ? "default" : "ghost",
+                variant: isActive("habilidades", pathname),
                 url: "/admin/habilidades",
               },
             ]}

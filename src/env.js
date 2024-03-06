@@ -13,12 +13,12 @@ export const env = createEnv({
         (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
         "You forgot to change the default URL",
       ),
-    // DATABASE_AUTH_TOKEN: z
-    //   .string()
-    //   .refine(
-    //     (str) => !str.includes("YOUR_MYSQL_DATABASE_AUTH_TOKEN_HERE"),
-    //     "You forgot to change the default DATABASE_AUTH_TOKEN",
-    //   ),
+    DATABASE_AUTH_TOKEN: z
+      .string()
+      .refine(
+        (str) => !str.includes("YOUR_MYSQL_DATABASE_AUTH_TOKEN_HERE"),
+        "You forgot to change the default DATABASE_AUTH_TOKEN",
+      ),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -35,6 +35,7 @@ export const env = createEnv({
     ),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    GOOGLE_EMAIL: z.string(),
   },
 
   /**
@@ -44,6 +45,8 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_SUPABASE_KEY: z.string(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string(),
   },
 
   /**
@@ -52,12 +55,15 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-    // DATABASE_AUTH_TOKEN: process.env.DATABASE_AUTH_TOKEN,
+    GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
+    NEXT_PUBLIC_SUPABASE_KEY: process.env.NEXT_PUBLIC_SUPABASE_KEY,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
