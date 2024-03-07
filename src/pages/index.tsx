@@ -11,6 +11,7 @@ import {
 import { api } from "@/utils/api";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const { data: projects } = api.project.getAll.useQuery();
@@ -18,15 +19,21 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="space-y-6 px-8 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 ">
         <div className="mx-auto flex w-full max-w-screen-2xl flex-col justify-center gap-6">
           <div className="mx-auto">
-            <Button
-              variant={"secondary"}
-              className="h-fit rounded-full py-1 text-muted-foreground/80"
+            <Link
+              href={"https://github.com/matheusmdr"}
+              target="_blank"
+              rel="noreferrer noopener"
             >
-              Follow in Github
-            </Button>
+              <Button
+                variant={"secondary"}
+                className="h-fit rounded-full py-1 text-muted-foreground/80"
+              >
+                Follow in Github
+              </Button>
+            </Link>
           </div>
           <h1 className="text-center text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
             Matheus Rocha
@@ -40,15 +47,21 @@ export default function Home() {
             and Expo.
           </p>
           <div className="mx-auto">
-            <Button variant={"link"} className="gap-2 px-0" size={"lg"}>
-              Say hi <MoveRight />
-            </Button>
+            <Link href={"#contact"}>
+              <Button variant={"link"} className="gap-2 px-0" size={"lg"}>
+                Say hi <MoveRight />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
-      <section className="flex w-full justify-center space-y-6 bg-slate-50 py-8  pb-8 pt-6 dark:bg-transparent md:py-12 md:pb-12 md:pt-10 lg:py-32">
+      <div className="w-full max-w-screen-2xl  border-b border-border px-8" />
+      <section
+        id="projects"
+        className="flex w-full justify-center space-y-6 bg-slate-50 px-8  py-8 pb-8 pt-6 dark:bg-transparent md:py-12 md:pb-12 md:pt-10 lg:py-32"
+      >
         <div className="flex w-full max-w-screen-2xl flex-col gap-6">
-          <h2 className="text-center text-5xl font-extrabold">
+          <h2 className="font-heading text-center text-3xl font-extrabold leading-[1.1] sm:text-3xl md:text-6xl">
             Featured projects
           </h2>
           <p className="mx-auto max-w-[85%] text-center leading-normal text-muted-foreground sm:text-lg sm:leading-7">
@@ -61,11 +74,14 @@ export default function Home() {
               (project) =>
                 project?.pictureUrl?.trim() && (
                   <Card key={project.id}>
+                    <Image
+                      src={project.pictureUrl}
+                      alt={project.name ?? ""}
+                      width={700}
+                      height={400}
+                      className="z-0 mx-auto w-full rounded-t-lg h-[200px] object-cover"
+                    />
                     <CardHeader>
-                      <Image
-                        src={project.pictureUrl}
-                        alt={project.name ?? ""}
-                      />
                       <CardTitle>{project.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -84,9 +100,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex w-full justify-center space-y-6 bg-slate-50 py-8  pb-8 pt-6 dark:bg-transparent md:py-12 md:pb-12 md:pt-10 lg:py-32">
+      <section
+        id="skills"
+        className="flex w-full justify-center space-y-6 px-8 py-8 pb-8 pt-6 md:py-12 md:pb-12 md:pt-10 lg:py-32"
+      >
         <div className="flex w-full max-w-screen-2xl flex-col gap-6">
-          <h2 className="text-center text-5xl font-extrabold">
+          <h2 className="font-heading text-center text-3xl font-extrabold leading-[1.1] sm:text-3xl md:text-6xl">
             Skills Showcase
           </h2>
           <p className="mx-auto max-w-[85%] text-center leading-normal text-muted-foreground sm:text-lg sm:leading-7">
