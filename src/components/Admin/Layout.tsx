@@ -13,7 +13,7 @@ export function Layout({ children }: PropsWithChildren) {
       disableTransitionOnChange
     >
       <AdminHeader />
-      <div className="min-h-dvh bg-white dark:bg-[#09090b]">
+      <div className="bg-white dark:bg-[#09090b] overflow-hidden max-h-screen">
         <SideNav>{children}</SideNav>
       </div>
       <Toaster />

@@ -104,6 +104,8 @@ export const projects = createTable("project", {
   updatedAt: text("updated_at"),
   pictureUrl: text("pictureUrl", { length: 255 }),
   picturePath: text("picturePath", { length: 255 }),
+  projectUrl: text("projectUrl", { length: 255 }),
+  projectRepository: text("projectRepository", { length: 255 }),
 });
 
 export const projectsRelations = relations(projects, ({ many }) => ({

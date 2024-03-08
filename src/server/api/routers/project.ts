@@ -48,6 +48,8 @@ export const projectRouter = createTRPCRouter({
         pictureUrl: z.string(),
         picturePath: z.string(),
         tagsId: z.array(z.number()),
+        projectUrl: z.string().optional(),
+        projectRepository: z.string().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -84,6 +86,8 @@ export const projectRouter = createTRPCRouter({
         pictureUrl: z.string(),
         picturePath: z.string(),
         tagsId: z.array(z.number()),
+        projectUrl: z.string().optional(),
+        projectRepository: z.string().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {

@@ -39,7 +39,7 @@ export function Header() {
           <li>
             <ThemeToggle />
           </li>
-          <li>
+          <li className="hidden lg:block">
             <Link
               href={"#contact"}
             >

@@ -8,10 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { api } from "@/utils/api";
-import { MoveRight } from "lucide-react";
+import { Github, Link2, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 export default function Home() {
   const { data: projects } = api.project.getAll.useQuery();
@@ -69,30 +75,56 @@ export default function Home() {
             <br />
             highlighting professional expertise and dedication.
           </p>
-          <div className="mx-auto grid w-full justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+          <div className="mx-auto grid w-full justify-center gap-6 sm:grid-cols-2 md:max-w-screen-2xl lg:grid-cols-3">
             {projects?.map(
               (project) =>
                 project?.pictureUrl?.trim() && (
-                  <Card key={project.id}>
+                  <Card
+                    key={project.id}
+                    className="flex flex-col justify-between"
+                  >
                     <Image
                       src={project.pictureUrl}
                       alt={project.name ?? ""}
                       width={700}
                       height={400}
-                      className="z-0 mx-auto w-full rounded-t-lg h-[200px] object-cover"
+                      className="z-0 mx-auto h-[200px] w-full rounded-t-lg object-cover"
                     />
                     <CardHeader>
                       <CardTitle>{project.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <CardDescription>{project.description}</CardDescription>
+                      <div className="flex gap-2 pt-2">
+                        {project.projectAbilities?.map((projectAbility) => (
+                          <p
+                            key={projectAbility.abilities.id}
+                            className="cursor-pointer text-xs text-accent-foreground/60 transition-colors hover:text-accent-foreground/80"
+                          >
+                            {projectAbility.abilities.name}
+                          </p>
+                        ))}
+                      </div>
                     </CardContent>
-                    <CardFooter>
-                      {project.projectAbilities?.map((projectAbility) => (
-                        <p key={projectAbility.abilities.id}>
-                          {projectAbility.abilities.name}
-                        </p>
-                      ))}
+                    <CardFooter className="flex flex-wrap gap-2">
+                      {project.projectUrl?.trim() && (
+                        <Link
+                          href={project.projectUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <Link2 className="group flex items-center gap-2 text-sm font-medium text-accent-foreground/60 transition-colors hover:text-accent-foreground/80" />
+                        </Link>
+                      )}
+                      {project.projectRepository && (
+                        <Link
+                          href={project.projectRepository}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <Github className="group flex items-center gap-2 text-sm font-medium text-accent-foreground/60 transition-colors hover:text-accent-foreground/80" />
+                        </Link>
+                      )}
                     </CardFooter>
                   </Card>
                 ),
@@ -113,26 +145,43 @@ export default function Home() {
             comprehensive range of skills in modern technologies, <br />{" "}
             cultivated through extensive experience and continuous learning.
           </p>
-          <div className="mx-auto grid w-full justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-            {abilities?.map(
-              (abilitie) =>
-                abilitie?.pictureUrl?.trim() && (
-                  <Card key={abilitie.id}>
-                    <CardHeader className="flex justify-center">
-                      <Image
-                        src={abilitie.pictureUrl}
-                        alt={abilitie.name ?? ""}
-                        width={100}
-                        height={100}
-                        className="mx-auto"
-                      />
-                    </CardHeader>
-                    <CardContent className="flex justify-center">
-                      <CardDescription>{abilitie.name}</CardDescription>
-                    </CardContent>
-                  </Card>
-                ),
-            )}
+          <div className="mx-auto flex w-full justify-center gap-4 space-y-4 pt-8 md:max-w-screen-xl">
+            <Carousel
+              opts={{
+                loop: true,
+                align: "center",
+              }}
+              plugins={[
+                AutoScroll({
+                  playOnInit: true,
+                }),
+              ]}
+              className="max-w-screen-md"
+            >
+              <CarouselContent>
+                {abilities?.map(
+                  (abilitie) =>
+                    abilitie?.pictureUrl?.trim() && (
+                      <CarouselItem key={abilitie.id} className="basis-1/4">
+                        <Card className="border-none">
+                          <CardContent className="flex items-center justify-center gap-2">
+                            <Image
+                              src={abilitie.pictureUrl}
+                              alt={abilitie.name ?? ""}
+                              width={100}
+                              height={100}
+                              className="w-6"
+                            />
+                            <CardDescription className="p-0">
+                              {abilitie.name}
+                            </CardDescription>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ),
+                )}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </section>

@@ -12,6 +12,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useRouter } from "next/router";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const isActive = (url: string, pathname: string) => {
   return pathname.includes(url) ? "default" : "ghost";
@@ -70,10 +71,10 @@ export function SideNav({ children }: React.PropsWithChildren) {
         </ResizablePanel>
         <ResizableHandle withHandle className="text-white" />
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-          <Tabs defaultValue="all">
-            <Separator />
+          <ScrollArea className="h-screen">
             {children}
-          </Tabs>
+            <ScrollBar orientation="vertical" />
+          </ScrollArea>
         </ResizablePanel>
       </ResizablePanelGroup>
     </TooltipProvider>

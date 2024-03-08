@@ -34,6 +34,8 @@ const formSchema = z.object({
     file: z.instanceof(File).optional(),
   }),
   tagsId: z.array(z.number()),
+  projectUrl: z.string().optional(),
+  projectRepository: z.string().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -59,6 +61,8 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
         data?.projectAbilities.map(
           (projectAbilities) => projectAbilities.abilities.id,
         ) ?? [],
+      projectRepository: data?.projectRepository ?? "",
+      projectUrl: data?.projectUrl ?? "",
     },
   });
 
@@ -137,6 +141,34 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
             </FormItem>
           )}
         />
+        <fieldset className="flex gap-6">
+          <FormField
+            name="projectUrl"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Url do Projeto</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            name="projectRepository"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Repositório do Projeto</FormLabel>
+                <FormControl>
+                  <Input placeholder="Nome" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </fieldset>
         <FormField
           control={form.control}
           name="tagsId"
