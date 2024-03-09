@@ -18,6 +18,7 @@ import { Github, Link2, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import AutoScroll from "embla-carousel-auto-scroll";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function Home() {
   const { data: projects } = api.project.getAll.useQuery();
@@ -75,7 +76,7 @@ export default function Home() {
             <br />
             highlighting professional expertise and dedication.
           </p>
-          <div className="mx-auto grid w-full justify-center gap-6 sm:grid-cols-2 md:max-w-screen-2xl lg:grid-cols-3">
+          <div className="mx-auto grid w-full justify-center gap-6 sm:grid-cols-2 md:max-w-screen-xl lg:grid-cols-3">
             {projects?.map(
               (project) =>
                 project?.pictureUrl?.trim() && (
@@ -83,19 +84,25 @@ export default function Home() {
                     key={project.id}
                     className="flex flex-col justify-between"
                   >
-                    <Image
-                      src={project.pictureUrl}
-                      alt={project.name ?? ""}
-                      width={700}
-                      height={400}
-                      className="z-0 mx-auto h-[200px] w-full rounded-t-lg object-cover"
-                    />
+                    <AspectRatio ratio={16 / 9} className="rounded-t-lg">
+                      <Image
+                        src={project.pictureUrl}
+                        alt={project.name ?? ""}
+                        width={300}
+                        height={300}
+                        className="h-full w-full object-cover rounded-t-lg"
+                      />
+                    </AspectRatio>
                     <CardHeader>
-                      <CardTitle>{project.name}</CardTitle>
+                      <CardTitle className="text-lg font-extrabold tracking-wide md:text-xl">
+                        {project.name}
+                      </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <CardDescription>{project.description}</CardDescription>
-                      <div className="flex gap-2 pt-2">
+                    <CardContent className="min-h-40">
+                      <CardDescription className="text-sm text-muted-foreground">
+                        {project.description}
+                      </CardDescription>
+                      <div className="flex flex-wrap gap-2 pt-2">
                         {project.projectAbilities?.map((projectAbility) => (
                           <p
                             key={projectAbility.abilities.id}
@@ -106,7 +113,7 @@ export default function Home() {
                         ))}
                       </div>
                     </CardContent>
-                    <CardFooter className="flex flex-wrap gap-2">
+                    <CardFooter className="flex flex-wrap justify-end gap-2">
                       {project.projectUrl?.trim() && (
                         <Link
                           href={project.projectUrl}
