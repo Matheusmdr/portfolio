@@ -119,6 +119,9 @@ dependencies:
   md-editor-rt:
     specifier: ^4.11.2
     version: 4.11.2(@codemirror/view@6.24.0)(@lezer/common@1.2.1)(react-dom@18.2.0)(react@18.2.0)
+  mini-svg-data-uri:
+    specifier: ^1.4.4
+    version: 1.4.4
   next:
     specifier: ^14.0.4
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -4938,6 +4941,11 @@ packages:
   /mimic-response@3.1.0:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: false
 
   /minimatch@3.1.2:

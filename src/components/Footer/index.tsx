@@ -5,14 +5,15 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="px-8">
-      <div id="contact" className="mx-auto flex flex-col lg:flex-row w-full max-w-screen-2xl items-center justify-between border-t border-t-border py-12 gap-12 lg:gap-0">
+      <div
+        id="contact"
+        className="mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-between gap-12 border-t border-t-border py-12 lg:flex-row lg:gap-0"
+      >
         <h3 className="text-3xl font-bold">Contact</h3>
-        <ul className="flex gap-4">
+        <ul className="flex flex-col gap-4 lg:flex-row">
           <li>
             <Link
-              href={
-                "mailto:matheus.m.rocha@unesp.br"
-              }
+              href={"mailto:matheus.m.rocha@unesp.br"}
               target="_blank"
               rel="noreferrer noopener"
             >

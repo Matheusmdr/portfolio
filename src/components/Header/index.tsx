@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 export function Header() {
   return (
-    <header className="w-full py-4">
+    <header className="w-full py-4 fixed top-0 z-20 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-screen-2xl justify-between">
         <div></div>
         <ul className="flex items-center gap-4">
