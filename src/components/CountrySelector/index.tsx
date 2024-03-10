@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   Select,
   SelectContent,
@@ -10,18 +9,21 @@ import Image from "next/image";
 
 import BrazilFlag from "@/assets/svgs/br.svg";
 import USAFlag from "@/assets/svgs/us.svg";
+import { useRouter } from "next/router";
 
 export function CountrySelector() {
   const router = useRouter();
 
-  const handleChangeLocale = async (locale: string) => {
-    await router.push(router.pathname, router.asPath, { locale });
+  const changeLocaleAndReload = async (newLocale: string) => {
+    const currentPath = router.asPath;
+
+    await router.push(currentPath, currentPath, { locale: newLocale });
   };
 
   return (
     <Select
       defaultValue={router.locale ?? "default"}
-      onValueChange={(value) => handleChangeLocale(value)}
+      onValueChange={(value) => changeLocaleAndReload(value)}
     >
       <SelectTrigger>
         <SelectValue placeholder="Select a language" className="flex gap-1" />

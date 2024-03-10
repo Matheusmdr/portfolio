@@ -4,7 +4,6 @@ import { CalendarCheck2, Users } from "lucide-react";
 import { Nav } from "@/components/Admin/SideNav/Nav";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { Tabs } from "@/components/ui/tabs";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import {
   ResizableHandle,

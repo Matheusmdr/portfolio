@@ -1,4 +1,8 @@
 {
+  "Head": {
+    "title": "Personal Portfolio",
+    "description": "Discover a sleek portfolio featuring projects developed with TRPC, Next.js, TypeScript, NextAuth, Tailwind CSS, Supabase, Turso DB, and Shadcn UI. Each showcases modern web development expertise, blending functionality and aesthetics seamlessly."
+  },
   "Header": {
     "skills": "Skills",
     "projects": "Projects",
@@ -28,6 +32,7 @@
       "description": "Check out my professional experiences.",
       "fuel-tab": {
         "title": "Fuel Agency",
+        "place": "Fuel Agency, Presidente Prudente - SP",
         "subtitle": "Intern",
         "date": "06/2021 - 07/2023",
         "description": "I worked on the development and support of several websites in collaboration with the company.",
@@ -37,7 +42,8 @@
       },
       "t2r-tab": {
         "title": "T2R - Technological Solutions",
-        "place": "Presidente Prudente - SP",
+        "place": "T2R, Presidente Prudente - SP",
+        "date": "06/2023 - 12/2023",
         "subtitle": "Web Developer",
         "description": "I worked on the development of the company's institutional website."
       }
