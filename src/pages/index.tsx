@@ -9,6 +9,7 @@ import { AbilitesList } from "@/components/AbilitiesList";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { type GetStaticProps } from "next";
 import { useTranslations } from "next-intl";
+import { ExperiencesTabs } from "@/components/ExperiencesTabs";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -62,6 +63,22 @@ export default function Home() {
       </Background>
       <section
         id="projects"
+        className="flex w-full justify-start space-y-6 bg-background px-8 py-8 pb-8 pt-6 dark:bg-transparent md:py-12 md:pb-12 md:pt-10 lg:py-32"
+      >
+        <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-6 md:max-w-screen-xl">
+          <h2 className="font-heading bg-opacity-50 bg-gradient-to-b from-muted-foreground to-foreground bg-clip-text text-center text-3xl font-extrabold leading-[1.1] text-transparent sm:text-3xl md:text-6xl">
+            {t("Experiences.title")}
+          </h2>
+          <p className="text-center leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+            {t.rich("Experiences.description", {
+              br: () => <br />,
+            })}
+          </p>
+          <ExperiencesTabs />
+        </div>
+      </section>
+      <section
+        id="projects"
         className="flex w-full justify-center space-y-6 bg-background px-8  py-8 pb-8 pt-6 dark:bg-transparent md:py-12 md:pb-12 md:pt-10 lg:py-32"
       >
         <div className="flex w-full max-w-screen-2xl flex-col gap-6">
@@ -76,7 +93,6 @@ export default function Home() {
           <ProjectsList />
         </div>
       </section>
-
       <section
         id="skills"
         className="flex w-full justify-center space-y-6 px-8 py-8 pb-8 pt-6 md:py-12 md:pb-12 md:pt-10 lg:py-32"

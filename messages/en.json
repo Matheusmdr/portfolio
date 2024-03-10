@@ -22,6 +22,25 @@
     "Skills": {
       "title": "Skills Showcase",
       "description": "Explore my portfolio's section dedicated to showcasing a comprehensive range of skills in modern technologies,<br></br> cultivated through extensive experience and continuous learning."
+    },
+    "Experiences": {
+      "title": "Experiences",
+      "description": "Check out my professional experiences.",
+      "fuel-tab": {
+        "title": "Fuel Agency",
+        "subtitle": "Intern",
+        "date": "06/2021 - 07/2023",
+        "description": "I worked on the development and support of several websites in collaboration with the company.",
+        "subtitle2": "Web Developer",
+        "date2": "07/2023 - Currently",
+        "description2": "I work in website development using technologies such as JavaScript, TypeScript, React.js, Next.js, Prisma ORM, MySQL, and REST API. A highlighted milestone in my professional journey was the implementation of the institutional website for the Açaí franchise OAKBERRY. In this project, I played a central role as the sole responsible individual, fully employing the aforementioned technologies for the website development and integration of the requested functionalities."
+      },
+      "t2r-tab": {
+        "title": "T2R - Technological Solutions",
+        "place": "Presidente Prudente - SP",
+        "subtitle": "Web Developer",
+        "description": "I worked on the development of the company's institutional website."
+      }
     }
   },
   "Footer": {

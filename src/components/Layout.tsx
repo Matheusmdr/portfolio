@@ -2,16 +2,15 @@ import { type PropsWithChildren } from "react";
 import { Header } from "./Header";
 import Head from "next/head";
 import { Footer } from "./Footer";
+import { useTranslations } from "next-intl";
 
 export function Layout({ children }: PropsWithChildren) {
+  const t = useTranslations("Head");
   return (
     <>
       <Head>
-        <title>Personal Portfolio</title>
-        <meta
-          name="description"
-          content="Discover a sleek portfolio featuring projects developed with TRPC, Next.js, TypeScript, NextAuth, Tailwind CSS, Supabase, Turso DB, and Shadcn UI. Each showcases modern web development expertise, blending functionality and aesthetics seamlessly."
-        />
+        <title>{t("title")}</title>
+        <meta name="description" content={t("description")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />

@@ -10,13 +10,13 @@ export function Header() {
 
   return (
     <header className="w-full py-4 fixed top-0 z-20 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="mx-auto flex max-w-screen-2xl justify-between">
-        <div></div>
-        <ul className="flex items-center gap-4">
+      <nav className="mx-auto flex max-w-screen-2xl justify-center lg:justify-between">
+        <div className="hidden lg:block"></div>
+        <ul className="flex items-center gap-2 lg:gap-4">
           <li>
             <Link
               href={"#projects"}
-              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
+              className="flex items-center text-xs lg:text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
             >
               {t("projects")}
             </Link>
@@ -24,7 +24,7 @@ export function Header() {
           <li>
             <Link
               href={"#skills"}
-              className="flex items-center text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
+              className="flex items-center text-xs lg:text-lg font-medium text-foreground/60 transition-colors hover:text-foreground/80 sm:text-sm"
             >
                 {t("skills")}
             </Link>

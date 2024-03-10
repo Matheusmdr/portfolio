@@ -1,4 +1,8 @@
 {
+  "Head": {
+    "title": "Portfólio pessoal",
+    "description": "Descubra um portfólio elegante apresentando projetos desenvolvidos com TRPC, Next.js, TypeScript, NextAuth, Tailwind CSS, Supabase, Turso DB e Shadcn UI. Cada um deles demonstra a expertise moderna em desenvolvimento web, combinando funcionalidade e estética de forma harmoniosa."
+  },
   "Header": {
     "skills": "Habilidades",
     "projects": "Projetos",
@@ -22,6 +26,27 @@
     "Skills": {
       "title": "Apresentação de Habilidades",
       "description": "Explore a seção do meu portfólio dedicada a exibir uma ampla gama de habilidades em tecnologias modernas,<br></br> cultivadas através de uma experiência extensa e aprendizado contínuo."
+    },
+    "Experiences": {
+      "title": "Experiências",
+      "description": "Confira minhas experiências profissionais.",
+      "fuel-tab": {
+        "title": "Agência Fuel",
+        "place": "Agência Fuel, Presidente Prudente - SP",
+        "subtitle": "Estagiário",
+        "date": "06/2021 - 07/2023",
+        "description": "Atuei no desenvolvimento e suporte de diversos websites em conjunto com a empresa.",
+        "subtitle2": "Desenvolvedor Web",
+        "date2": "07/2023 - Atualmente",
+        "description2": "Trabalho no desenvolvimento de sites utilizando tecnologias como JavaScript, TypeScript, React.js, Next.js, Prisma ORM, MySQL e REST API. Um marco destacado em minha jornada profissional foi a implementação do site institucional da franquia de Açaí OAKBERRY. Neste projeto, desempenhei um papel central como o único responsável, utilizando integralmente as tecnologias mencionadas para o desenvolvimento do site e a integração das funcionalidades solicitadas."
+      },
+      "t2r-tab": {
+        "title": "T2R - Soluções Tecnológicas",
+        "place": "T2R, Presidente Prudente - SP",
+        "date": "06/2023 - 12/2023",
+        "subtitle": "Desenvolvedor Web",
+        "description": "Atuei no desenvolvimento do site institucional da empresa."
+      }
     }
   },
   "Footer": {
