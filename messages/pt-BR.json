@@ -1,0 +1,30 @@
+{
+  "Header": {
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "contact-me": "Entre em Contato"
+  },
+  "ThemeToggle": {
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "Home": {
+    "About": {
+      "follow-in-github": "Siga no GitHub",
+      "description": "Bacharel em Ciência da Computação pela Faculdade de Ciência e Tecnologia (FCT - UNESP). <br></br> Trabalho na área utilizando tecnologias como React.js, Next.js, Typescript, Tailwindcss, ShadcnUI, RadixUI, NodeJs, TRPC e Prisma ORM. Atualmente, estou buscando aprimorar minhas habilidades em desenvolvimento móvel com React Native e Expo.",
+      "say-hi": "Diga Olá"
+    },
+    "Projects": {
+      "title": "Projetos em Destaque",
+      "description": "Explore uma ampla gama de projetos web e móveis em meu portfólio, <br></br> destacando expertise profissional e dedicação."
+    },
+    "Skills": {
+      "title": "Apresentação de Habilidades",
+      "description": "Explore a seção do meu portfólio dedicada a exibir uma ampla gama de habilidades em tecnologias modernas,<br></br> cultivadas através de uma experiência extensa e aprendizado contínuo."
+    }
+  },
+  "Footer": {
+    "contact": "Contato"
+  }
+}

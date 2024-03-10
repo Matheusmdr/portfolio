@@ -68,7 +68,7 @@ export const projectColumns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-right font-medium">
-          {row.getValue("createdAt")
+          {row.getValue("createdAt") 
             ? format(row.getValue("createdAt"), "dd/MM/yyyy -	kk:mm")
             : "-"}
         </div>

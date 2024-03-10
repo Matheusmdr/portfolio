@@ -7,8 +7,12 @@ import { Background } from "@/components/Background";
 import { ProjectsList } from "@/components/ProjectsList";
 import { AbilitesList } from "@/components/AbilitiesList";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { type GetStaticProps } from "next";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("Home");
+
   return (
     <Layout>
       <Background>
@@ -22,7 +26,7 @@ export default function Home() {
               >
                 <ButtonAnimatedBorder variant={"secondary"}>
                   <span className="z-10 text-sm font-medium text-muted-foreground">
-                    Follow in Github
+                    {t("About.follow-in-github")}
                   </span>
                 </ButtonAnimatedBorder>
               </Link>
@@ -42,17 +46,14 @@ export default function Home() {
               ]}
             />
             <p className="max-w-4xl text-center font-normal leading-7 text-muted-foreground">
-              Bachelor of Computer Science from the College of Science and
-              Technology (FCT - UNESP). <br /> I work in the field using
-              technologies such as React.js, Next.js, Typescript, Tailwindcss,
-              ShadcnUI, RadixUI, NodeJs, TRPC, and Prisma ORM. Currently, I am
-              seeking to improve my skills in mobile development with React
-              Native and Expo.
+              {t.rich("About.description", {
+                br: () => <br />,
+              })}
             </p>
             <div className="mx-auto">
               <Link href={"#contact"}>
                 <Button variant={"link"} className="gap-2 px-0" size={"lg"}>
-                  Say hi <MoveRight />
+                  {t("About.say-hi")} <MoveRight />
                 </Button>
               </Link>
             </div>
@@ -65,12 +66,12 @@ export default function Home() {
       >
         <div className="flex w-full max-w-screen-2xl flex-col gap-6">
           <h2 className="font-heading bg-opacity-50 bg-gradient-to-b from-muted-foreground to-foreground bg-clip-text text-center text-3xl font-extrabold leading-[1.1] text-transparent sm:text-3xl md:text-6xl">
-            Featured projects
+            {t("Projects.title")}
           </h2>
           <p className="mx-auto max-w-[85%] text-center leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Explore a diverse range of web and mobile projects in my portfolio,{" "}
-            <br />
-            highlighting professional expertise and dedication.
+            {t.rich("Projects.description", {
+              br: () => <br />,
+            })}
           </p>
           <ProjectsList />
         </div>
@@ -82,12 +83,12 @@ export default function Home() {
       >
         <div className="flex w-full max-w-screen-2xl flex-col gap-6">
           <h2 className="font-heading bg-opacity-50 bg-gradient-to-b from-muted-foreground to-foreground bg-clip-text text-center text-3xl font-extrabold leading-[1.1] text-transparent sm:text-3xl md:text-6xl">
-            Skills Showcase
+            {t("Skills.title")}
           </h2>
           <p className="mx-auto max-w-[85%] text-center leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Explore my portfolio&apos;s section dedicated to showcasing a
-            comprehensive range of skills in modern technologies, <br />{" "}
-            cultivated through extensive experience and continuous learning.
+            {t.rich("Skills.description", {
+              br: () => <br />,
+            })}
           </p>
           <AbilitesList />
         </div>
@@ -95,3 +96,12 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      messages: (await import(`../../messages/${context.locale}.json`)).default,
+    },
+  };
+};

@@ -97,7 +97,6 @@ export const projects = createTable("project", {
     .primaryKey({ autoIncrement: true }),
   isEnabled: int("isEnabled", { mode: "boolean" }).default(false),
   name: text("name", { length: 255 }),
-  description: text("description", { length: 255 }),
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
@@ -108,8 +107,32 @@ export const projects = createTable("project", {
   projectRepository: text("projectRepository", { length: 255 }),
 });
 
+export const projectsDescriptions = createTable("projects_descriptions", {
+  projectId: int("project_id")
+    .notNull()
+    .references(() => projects.id),
+  description: text("description", { length: 255 }),
+  language: text("language", { length: 255 }),
+  isEnabled: int("isEnabled", { mode: "boolean" }).default(false),
+  createdAt: text("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: text("updated_at"),
+});
+
+export const projectsDescriptionsRelations = relations(
+  projectsDescriptions,
+  ({ one }) => ({
+    project: one(projects, {
+      fields: [projectsDescriptions.projectId],
+      references: [projects.id],
+    }),
+  }),
+);
+
 export const projectsRelations = relations(projects, ({ many }) => ({
   projectAbilities: many(projectAbilities),
+  projectsDescriptions: many(projectsDescriptions),
 }));
 
 export const abilities = createTable("abilities", {

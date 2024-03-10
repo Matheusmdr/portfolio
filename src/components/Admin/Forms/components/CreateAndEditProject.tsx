@@ -28,7 +28,8 @@ interface CreateAndEditProjectProps {
 const formSchema = z.object({
   isEnabled: z.boolean(),
   name: z.string().min(1),
-  description: z.string().min(1),
+  descriptionPtBR: z.string().min(1),
+  descriptionEn: z.string().min(1),
   pictureFile: z.object({
     preview: z.string(),
     file: z.instanceof(File).optional(),
@@ -52,7 +53,14 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
     defaultValues: {
       isEnabled: data?.isEnabled ?? false,
       name: data?.name ?? "",
-      description: data?.description ?? "",
+      descriptionPtBR:
+        data?.projectsDescriptions.find(
+          (projectDescriptions) => projectDescriptions.language === "pt-BR",
+        )?.description ?? "",
+      descriptionEn:
+        data?.projectsDescriptions.find(
+          (projectDescriptions) => projectDescriptions.language === "en",
+        )?.description ?? "",
       pictureFile: {
         preview: data?.pictureUrl ?? "",
         file: undefined,
@@ -81,6 +89,10 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
           id: data.id,
           pictureUrl: downloadUrl ?? "",
           picturePath: picturePath ?? "",
+          descriptions: [
+            { language: "pt-BR", description: formData.descriptionPtBR },
+            { language: "en", description: formData.descriptionEn },
+          ],
           ...formData,
         });
         toast({
@@ -107,6 +119,10 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
         create({
           pictureUrl: downloadUrl ?? "",
           picturePath: picturePath ?? "",
+          descriptions: [
+            { language: "pt-BR", description: formData.descriptionPtBR },
+            { language: "en", description: formData.descriptionEn },
+          ],
           ...formData,
         });
         toast({
@@ -218,11 +234,24 @@ export function CreateAndEditProject({ data }: CreateAndEditProjectProps) {
           )}
         />
         <FormField
-          name="description"
+          name="descriptionPtBR"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Descrição</FormLabel>
+              <FormLabel>Descrição (pt-BR)</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Descrição" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          name="descriptionEn"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Descrição (en)</FormLabel>
               <FormControl>
                 <Textarea placeholder="Descrição" {...field} />
               </FormControl>

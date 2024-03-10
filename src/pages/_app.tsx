@@ -1,7 +1,7 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
-
+import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { api } from "@/utils/api";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -14,11 +14,13 @@ const inter = Inter({
 });
 
 import "@/styles/globals.css";
+import { useRouter } from "next/router";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const MyApp: AppType<{
+  session: Session | null;
+  messages: AbstractIntlMessages | undefined;
+}> = ({ Component, pageProps: { session, ...pageProps } }) => {
+  const router = useRouter();
   return (
     <>
       <style jsx global>{`
@@ -26,16 +28,22 @@ const MyApp: AppType<{ session: Session | null }> = ({
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-      <SessionProvider session={session}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </SessionProvider>
+      <NextIntlClientProvider
+        locale={router.locale}
+        timeZone="Europe/Vienna"
+        messages={pageProps.messages}
+      >
+        <SessionProvider session={session}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </SessionProvider>
+      </NextIntlClientProvider>
     </>
   );
 };

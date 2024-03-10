@@ -1,0 +1,30 @@
+{
+  "Header": {
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact-me": "Contact Me"
+  },
+  "ThemeToggle": {
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "Home": {
+    "About": {
+      "follow-in-github": "Follow in Github",
+      "description": "Bachelor of Computer Science from the College of Science and Technology (FCT - UNESP). <br></br> I work in the field using technologies such as React.js, Next.js, Typescript, Tailwindcss, ShadcnUI, RadixUI, NodeJs, TRPC, and Prisma ORM. Currently, I am seeking to improve my skills in mobile development with React Native and Expo.",
+      "say-hi": "Say hi"
+    },
+    "Projects": {
+      "title": "Featured Projects",
+      "description": " Explore a diverse range of web and mobile projects in my portfolio, <br></br> highlighting professional expertise and dedication."
+    },
+    "Skills": {
+      "title": "Skills Showcase",
+      "description": "Explore my portfolio's section dedicated to showcasing a comprehensive range of skills in modern technologies,<br></br> cultivated through extensive experience and continuous learning."
+    }
+  },
+  "Footer": {
+    "contact": "Contact"
+  }
+}

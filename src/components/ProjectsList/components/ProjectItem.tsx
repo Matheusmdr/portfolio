@@ -11,16 +11,17 @@ import { type RouterOutputs } from "@/utils/api";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface ProjectItemProps {
   project: RouterOutputs["project"]["getAll"][number];
 }
 
 export function ProjectItem({ project }: ProjectItemProps) {
+  const { locale } = useRouter();
+
   return (
-    <Card
-      key={project.id}
-    >
+    <Card key={project.id}>
       {project.pictureUrl && (
         <AspectRatio ratio={16 / 9} className="py-4">
           <Image
@@ -28,7 +29,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
             alt={project.name ?? ""}
             width={300}
             height={300}
-            className="object-cover rounded-lg w-11/12 mx-auto"
+            className="mx-auto w-11/12 rounded-lg object-cover"
           />
         </AspectRatio>
       )}
@@ -39,7 +40,11 @@ export function ProjectItem({ project }: ProjectItemProps) {
       </CardHeader>
       <CardContent className="min-h-40">
         <CardDescription className="text-sm text-muted-foreground">
-          {project.description}
+          {
+            project.projectsDescriptions.find(
+              (projectDescriptions) => projectDescriptions.language === locale,
+            )?.description
+          }
         </CardDescription>
         <div className="flex flex-wrap gap-2 pt-2">
           {project.projectAbilities?.map((projectAbility) => (

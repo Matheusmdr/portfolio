@@ -5,7 +5,11 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "@/server/api/trpc";
-import { projectAbilities, projects } from "@/server/db/schema";
+import {
+  projectAbilities,
+  projects,
+  projectsDescriptions,
+} from "@/server/db/schema";
 import { eq } from "drizzle-orm";
 import { deleteFile } from "@/utils/supabaseStorage";
 import { TRPCError } from "@trpc/server";
@@ -13,8 +17,14 @@ import { TRPCError } from "@trpc/server";
 export const projectRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.projects.findMany({
-      orderBy: (projects, { desc }) => [desc(projects.createdAt)],
+      orderBy: (projects, { desc }) => [desc(projects.name)],
       with: {
+        projectsDescriptions: {
+          columns: {
+            language: true,
+            description: true,
+          },
+        },
         projectAbilities: {
           with: {
             abilities: true,
@@ -30,6 +40,12 @@ export const projectRouter = createTRPCRouter({
       return ctx.db.query.projects.findFirst({
         where: eq(projects.id, input.id),
         with: {
+          projectsDescriptions: {
+            columns: {
+              language: true,
+              description: true,
+            },
+          },
           projectAbilities: {
             with: {
               abilities: true,
@@ -44,7 +60,12 @@ export const projectRouter = createTRPCRouter({
       z.object({
         isEnabled: z.boolean(),
         name: z.string().min(1),
-        description: z.string().min(1),
+        descriptions: z.array(
+          z.object({
+            description: z.string().min(1),
+            language: z.string(),
+          }),
+        ),
         pictureUrl: z.string(),
         picturePath: z.string(),
         tagsId: z.array(z.number()),
@@ -58,13 +79,24 @@ export const projectRouter = createTRPCRouter({
         .values({
           isEnabled: input.isEnabled,
           name: input.name,
-          description: input.description,
           pictureUrl: input.pictureUrl,
           picturePath: input.picturePath,
+          projectUrl: input.projectUrl,
+          projectRepository: input.projectRepository,
         })
         .returning({ id: projects.id });
 
       const project = result[0];
+
+      if (result.length > 0 && project && input.descriptions.length > 0) {
+        await ctx.db.insert(projectsDescriptions).values(
+          input.descriptions.map((description) => ({
+            projectId: project.id,
+            description: description.description,
+            language: description.language,
+          })),
+        );
+      }
 
       if (result.length > 0 && project && input.tagsId.length > 0) {
         await ctx.db.insert(projectAbilities).values(
@@ -82,7 +114,12 @@ export const projectRouter = createTRPCRouter({
         isEnabled: z.boolean(),
         id: z.number(),
         name: z.string().min(1),
-        description: z.string().min(1),
+        descriptions: z.array(
+          z.object({
+            description: z.string().min(1),
+            language: z.string(),
+          }),
+        ),
         pictureUrl: z.string(),
         picturePath: z.string(),
         tagsId: z.array(z.number()),
@@ -96,19 +133,32 @@ export const projectRouter = createTRPCRouter({
         .set({
           isEnabled: input.isEnabled,
           name: input.name,
-          description: input.description,
           pictureUrl: input.pictureUrl,
           picturePath: input.picturePath,
           updatedAt: new Date().toISOString(),
+          projectUrl: input.projectUrl,
+          projectRepository: input.projectRepository,
         })
         .where(eq(projects.id, input.id))
         .returning({ id: projects.id });
-
       const project = result[0];
-
       await ctx.db
         .delete(projectAbilities)
         .where(eq(projectAbilities.projectId, input.id));
+
+      await ctx.db
+        .delete(projectsDescriptions)
+        .where(eq(projectsDescriptions.projectId, input.id));
+
+      if (result.length > 0 && project && input.descriptions.length > 0) {
+        await ctx.db.insert(projectsDescriptions).values(
+          input.descriptions.map((description) => ({
+            projectId: project.id,
+            description: description.description,
+            language: description.language,
+          })),
+        );
+      }
 
       if (result.length > 0 && project && input.tagsId.length > 0) {
         await ctx.db.insert(projectAbilities).values(

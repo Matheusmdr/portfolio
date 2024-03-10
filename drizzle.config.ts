@@ -9,8 +9,6 @@ export default {
     authToken: env.DATABASE_AUTH_TOKEN,
   },
   tablesFilter: ["portfolio_*"],
-  verbose: true,
-  strict: true,
 } satisfies Config;
 
 // export default {
