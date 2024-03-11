@@ -9,7 +9,7 @@ export function Header() {
   const t = useTranslations("Header");
 
   return (
-    <header className="w-full py-4 fixed top-0 z-20 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="w-full py-4 px-8 fixed top-0 z-20 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-screen-2xl justify-center lg:justify-between">
         <div className="hidden lg:block"></div>
         <ul className="flex items-center gap-2 lg:gap-4">

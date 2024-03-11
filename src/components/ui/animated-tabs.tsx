@@ -66,7 +66,7 @@ export const Tabs = ({
               />
             )}
 
-            <span className="relative block text-black dark:text-white">
+            <span className="relative block text-primary">
               {tab.title}
             </span>
           </button>
@@ -75,9 +75,8 @@ export const Tabs = ({
       <FadeInDiv
         tabs={tabs}
         active={active}
-        key={active.value}
         hovering={hovering}
-        className={cn("mt-32", contentClassName)}
+        className={cn("mt-0", contentClassName)}
       />
     </>
   );
