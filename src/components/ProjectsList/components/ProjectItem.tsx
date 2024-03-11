@@ -21,7 +21,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
   const { locale } = useRouter();
 
   return (
-    <Card key={project.id}>
+    <Card key={project.id} className="bg-gradient-to-br from-background to-muted/40">
       {project.pictureUrl && (
         <AspectRatio ratio={16 / 9} className="py-4">
           <Image
