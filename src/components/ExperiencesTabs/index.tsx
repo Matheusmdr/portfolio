@@ -131,7 +131,7 @@ export function ExperiencesTabs() {
                 layoutId="clickedbutton"
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                 className={cn(
-                  "absolute inset-0 rounded-full bg-gray-200 dark:bg-zinc-800 ",
+                  "absolute inset-0 rounded-full bg-gradient-to-br from-muted/80 to-muted/40 border border-border",
                 )}
               />
             )}

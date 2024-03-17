@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <Layout>
       <Background>
-        <section className="min-h-[65vh] space-y-6 px-8 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+        <section className="min-h-[32rem] lg:min-h-[65vh] space-y-6 px-8 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
           <div className="mx-auto flex w-full max-w-screen-2xl flex-col justify-center gap-6">
             <div className="mx-auto">
               <Link
@@ -25,7 +25,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <ButtonAnimatedBorder variant={"secondary"}>
+                <ButtonAnimatedBorder variant={"secondary"} className="bg-gradient-to-br from-background to-muted/90">
                   <span className="z-10 text-sm font-medium text-muted-foreground">
                     {t("About.follow-in-github")}
                   </span>

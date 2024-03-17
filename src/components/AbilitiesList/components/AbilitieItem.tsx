@@ -15,7 +15,7 @@ export function AbilitieItem({ abilitie }: AbilitieItemProps) {
         className="relative inline-flex w-full cursor-pointer justify-center gap-2 overflow-hidden rounded-full p-px py-[1px]"
       >
         <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#c2c2c2_0%,#505050_50%,#bebebe_100%)]" />
-        <div className="inline-flex gap-1 h-full w-full items-center justify-center rounded-full bg-background px-4 py-1 text-xs font-medium text-gray-50 backdrop-blur-3xl">
+        <div className="inline-flex gap-1 h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-background to-muted/90  px-4 py-1 text-xs font-medium text-gray-50 backdrop-blur-3xl">
           {abilitie.pictureUrl && (
             <Image
               src={abilitie.pictureUrl}
